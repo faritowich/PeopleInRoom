@@ -35,10 +35,10 @@ class ListAdapter() : Adapter<ListAdapter.MyViewHolder>() {
         holder.lastNameView.text = currentItem.lastName
         holder.ageView.text = currentItem.age.toString()
 
-//        holder.rowLayout.setOnClickListener {
-//            val action = ListFragmentDirections.actionListFragmentToUpdateFragment(currentItem)
-//            holder.itemView.findNavController().navigate(action)
-//        }
+        holder.rowLayout.setOnClickListener {
+            val action = ListFragmentDirections.actionListFragmentToUpdateFragment(currentItem)
+            holder.itemView.findNavController().navigate(action)
+        }
 
 
     }
