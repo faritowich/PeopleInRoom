@@ -1,10 +1,8 @@
 package com.example.peopleinroom.fragments.list
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -13,12 +11,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.peopleinroom.R
 import com.example.peopleinroom.viewmodel.UserViewModel
 import com.example.peopleinroom.databinding.FragmentListBinding
+import com.example.peopleinroom.fragments.DeleteDialogFragment
 
 class ListFragment : Fragment() {
 
     lateinit var binding: FragmentListBinding
     private val viewModel: UserViewModel by viewModels()
     private lateinit var recyclerView: RecyclerView
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,7 +42,16 @@ class ListFragment : Fragment() {
         viewModel.readAllData.observe(viewLifecycleOwner, Observer { user ->
             adapter.setData(user)
         })
-
         return binding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.layout_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        DeleteDialogFragment().show(
+            childFragmentManager, DeleteDialogFragment.TAG)
+        return true
     }
 }

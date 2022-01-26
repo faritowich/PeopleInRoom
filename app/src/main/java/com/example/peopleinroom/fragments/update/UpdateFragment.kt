@@ -1,12 +1,11 @@
 package com.example.peopleinroom.fragments.update
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -14,6 +13,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.peopleinroom.R
 import com.example.peopleinroom.databinding.FragmentAddBinding
 import com.example.peopleinroom.databinding.FragmentUpdateBinding
+import com.example.peopleinroom.fragments.DeleteDialogFragment
 import com.example.peopleinroom.model.User
 import com.example.peopleinroom.viewmodel.UserViewModel
 
@@ -22,6 +22,11 @@ class UpdateFragment : Fragment() {
     lateinit var binding: FragmentUpdateBinding
     val viewModel: UserViewModel by viewModels()
     private val args by navArgs<UpdateFragmentArgs>()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,7 +65,33 @@ class UpdateFragment : Fragment() {
 
     }
 
-    private fun inputCheck(firstName: String, lastName: String, age: String): Boolean{
-        return !(TextUtils.isEmpty(firstName) && TextUtils.isEmpty(lastName) && TextUtils.isEmpty(age))
+    private fun inputCheck(firstName: String, lastName: String, age: String): Boolean {
+        return !(TextUtils.isEmpty(firstName) && TextUtils.isEmpty(lastName) && TextUtils.isEmpty(
+            age
+        ))
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.layout_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.delete_button) {
+            deleteUser()
+        }
+        return true
+    }
+
+    private fun deleteUser() {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setPositiveButton(getString(R.string.delete)) { _, _ ->
+            viewModel.deleteUser(args.currentUser)
+            Toast.makeText(requireContext(), "User deleted!", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.action_updateFragment_to_listFragment)
+        }
+        builder.setNegativeButton(getString(R.string.cancel)) { _, _ -> }
+        builder.setTitle("Delete ${args.currentUser.firstName}?")
+        builder.setMessage("Are you sure to delete this user?")
+        builder.create().show()
     }
 }
