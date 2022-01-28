@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="24sp"
+    android:padding="16sp"
     android:id="@+id/row_layout">
 
     <TextView
@@ -14,7 +14,7 @@
         android:layout_gravity="center_vertical"
         android:paddingHorizontal="16dp"
         android:text="@string/_1"
-        android:textSize="40sp"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
     <TextView
@@ -24,7 +24,7 @@
         android:layout_gravity="center_vertical"
         android:paddingHorizontal="8dp"
         android:text="@string/azat"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
     <TextView
@@ -34,7 +34,7 @@
         android:layout_gravity="center_vertical"
         android:paddingHorizontal="8dp"
         android:text="@string/nabiullin"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
     <TextView
@@ -44,6 +44,6 @@
         android:layout_gravity="center_vertical"
         android:paddingHorizontal="16dp"
         android:text="@string/_28"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="bold" />
 </LinearLayout>

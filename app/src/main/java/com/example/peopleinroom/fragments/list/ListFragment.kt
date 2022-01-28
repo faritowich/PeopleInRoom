@@ -9,8 +9,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.peopleinroom.R
-import com.example.peopleinroom.viewmodel.UserViewModel
 import com.example.peopleinroom.databinding.FragmentListBinding
+import com.example.peopleinroom.viewmodel.UserViewModel
 import com.example.peopleinroom.fragments.DeleteDialogFragment
 
 class ListFragment : Fragment() {

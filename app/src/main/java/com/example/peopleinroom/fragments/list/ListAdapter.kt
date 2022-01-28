@@ -39,8 +39,6 @@ class ListAdapter() : Adapter<ListAdapter.MyViewHolder>() {
             val action = ListFragmentDirections.actionListFragmentToUpdateFragment(currentItem)
             holder.itemView.findNavController().navigate(action)
         }
-
-
     }
 
     override fun getItemCount(): Int = userList.size
