@@ -2,7 +2,6 @@ package com.example.peopleinroom.fragments.update
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.text.Editable
 import android.text.TextUtils
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -12,9 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.peopleinroom.MainActivity
 import com.example.peopleinroom.R
-import com.example.peopleinroom.databinding.FragmentAddBinding
 import com.example.peopleinroom.databinding.FragmentUpdateBinding
-import com.example.peopleinroom.fragments.DeleteDialogFragment
 import com.example.peopleinroom.model.User
 import com.example.peopleinroom.viewmodel.UserViewModel
 
@@ -52,7 +49,7 @@ class UpdateFragment : Fragment() {
         val lastName = binding.updateLastNameEt.text.toString()
         val age = binding.updateAgeEt.text.toString()
 
-        if (inputCheck(firstName, lastName, age)) {
+        if (fieldsAreFilled(firstName, lastName, age)) {
             // Create User Object
             val updatedUser = User(args.currentUser.id, firstName, lastName, Integer.parseInt(age))
             // Update Data in Database
@@ -63,13 +60,10 @@ class UpdateFragment : Fragment() {
         } else {
             Toast.makeText(requireContext(), "Please fill all fields", Toast.LENGTH_SHORT).show()
         }
-
     }
 
-    private fun inputCheck(firstName: String, lastName: String, age: String): Boolean {
-        return !(TextUtils.isEmpty(firstName) && TextUtils.isEmpty(lastName) && TextUtils.isEmpty(
-            age
-        ))
+    private fun fieldsAreFilled(firstName: String, lastName: String, age: String): Boolean{
+        return (!TextUtils.isEmpty(firstName) && !TextUtils.isEmpty(lastName) && !TextUtils.isEmpty(age))
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -79,8 +73,7 @@ class UpdateFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.delete_button) {
             deleteUser()
-        }
-        else {
+        } else {
             (activity as MainActivity).onSupportNavigateUp()
         }
         return true

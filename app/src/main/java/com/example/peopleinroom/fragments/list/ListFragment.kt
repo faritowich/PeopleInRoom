@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.peopleinroom.R
 import com.example.peopleinroom.databinding.FragmentListBinding
 import com.example.peopleinroom.viewmodel.UserViewModel
-import com.example.peopleinroom.fragments.DeleteDialogFragment
+import com.example.peopleinroom.fragments.delete.DeleteDialogFragment
 
 class ListFragment : Fragment() {
 
