@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.peopleinroom.MainActivity
 import com.example.peopleinroom.R
 import com.example.peopleinroom.databinding.FragmentAddBinding
 import com.example.peopleinroom.databinding.FragmentUpdateBinding
@@ -78,6 +79,9 @@ class UpdateFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.delete_button) {
             deleteUser()
+        }
+        else {
+            (activity as MainActivity).onSupportNavigateUp()
         }
         return true
     }
